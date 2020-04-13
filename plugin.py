@@ -128,7 +128,7 @@ class BasePlugin:
 
           self.filtered_devices = list()
           for device in self.devices:
-             if ((device["uiClass"] == "RollerShutter") or (device["uiClass"] == "ExteriorScreen")):
+             if ((device["uiClass"] == "GarageDoor") or (device["uiClass"] == "RollerShutter") or (device["uiClass"] == "ExteriorScreen")):
                self.filtered_devices.append(device)
 
           if (len(Devices) == 0 and self.startup):
@@ -150,8 +150,8 @@ class BasePlugin:
                     found = True
                     break
                if (not found):
-                 Domoticz.Status("Must create device: "+device["label"])
-                 Domoticz.Device(Name=device["label"], Unit=UnitID, Type=244, Subtype=73, Switchtype=16, DeviceID=device["deviceURL"]).Create()
+                 Domoticz.Status("Must create device: "+device["label"]+device["deviceURL"])
+                 Domoticz.Device(Name=device["label"], Unit=UnitID+1, Type=244, Subtype=73, Switchtype=16, DeviceID=device["deviceURL"]).Create()
                  idx +=1
                else:
                   found = False
